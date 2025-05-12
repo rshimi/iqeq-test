@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Component\Serializer\SerializerInterface;
 
 #[Route('/vehicle/information')]
@@ -33,12 +34,12 @@ final class VehicleInformationController extends AbstractController
     #[Route('/{id}', name: 'app_vehicle_information_show', methods: ['GET'])]
     public function show(
         VehicleInformation $vehicleInformation,
-        int $id
     ): Response {
         return new JsonResponse($vehicleInformation->jsonSerialize());
     }
 
     #[Route('/{id}', name: 'app_vehicle_information_edit', methods: ['PUT'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
     public function edit(
         Request $request,
         VehicleInformation $vehicleInformation,
