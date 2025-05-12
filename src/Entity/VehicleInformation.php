@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\VehicleInformationRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: VehicleInformationRepository::class)]
 class VehicleInformation
@@ -15,30 +16,39 @@ class VehicleInformation
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $make = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $model = null;
 
     #[ORM\Column]
+    #[Assert\Range(min:1886)]
     private ?int $year = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $colour = null;
 
     #[ORM\Column(length: 255)]
+    #[Assert\NotBlank]
     private ?string $type = null;
 
     #[ORM\Column(length: 17)]
+    #[Assert\NotBlank]
     private ?string $vehicleIdentificationNumber = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[Assert\DateTime]
     private ?\DateTime $registration_date = null;
 
     #[ORM\Column(length: 12)]
+    #[Assert\NotBlank]
     private ?string $licencePlate = null;
 
     #[ORM\Column(length: 2)]
+    #[Assert\NotBlank]
     private ?string $country = null;
 
     public function getId(): ?int
@@ -152,5 +162,17 @@ class VehicleInformation
         $this->country = $country;
 
         return $this;
+    }
+
+    public function jsonSerialize(): array
+    {
+        return [
+            '_id' => $this->id,
+            'make' => $this->make,
+            'model' => $this->model,
+            'year' => $this->year,
+            'colour' => $this->colour,
+            'type' => $this->type,
+        ];
     }
 }

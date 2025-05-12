@@ -12,4 +12,36 @@ class VehicleInformationRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, VehicleInformation::class);
     }
+
+    public function findAll(): array
+    {
+        $queryBuilder = $this->createQueryBuilder('i');
+
+        return $queryBuilder
+            ->select('i')
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function findByType(string $type): array
+    {
+        $queryBuilder = $this->createQueryBuilder('i');
+        $queryBuilder->where('i.type = :type')
+            ->setParameter('type', $type);
+
+        return $queryBuilder
+            ->getQuery()
+            ->getArrayResult();
+    }
+
+    public function findById(int $id): array
+    {
+        $queryBuilder = $this->createQueryBuilder('i');
+        $queryBuilder->where('i.id = :id')
+            ->setParameter('id', $id);
+
+        return $queryBuilder
+            ->getQuery()
+            ->getArrayResult();
+    }
 }
