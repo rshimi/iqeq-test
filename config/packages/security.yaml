@@ -16,6 +16,7 @@ security:
         main:
             lazy: true
             provider: app_user_provider
+            access_denied_handler: App\Security\AccessDeniedHandler
             json_login:
                 check_path: /login
                 username_path: email

@@ -36,8 +36,8 @@ class GetVehicleInformationTest extends WebTestCase
     public function vehicleTypeSpecificDataAndExpectedDataProvider(): array
     {
         return [
-            [1, 'toyota', 'F-150'],
-            [2, 'Ford', 'Camry'],
+            [1, 'Ford', 'F-150'],
+            [2, 'Toyota', 'Camry'],
         ];
     }
 }

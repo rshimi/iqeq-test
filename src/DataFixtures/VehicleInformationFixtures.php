@@ -14,12 +14,14 @@ class VehicleInformationFixtures extends Fixture
     {
         $manufacturer1 = $this->createManufacturer('Toyota', 'Japan');
         $manufacturer2 = $this->createManufacturer('Ford', 'USA');
+        $manufacturer3 = $this->createManufacturer('Honda', 'Japan');
 
         $manager->persist($manufacturer1);
         $manager->persist($manufacturer2);
+        $manager->persist($manufacturer3);
 
         $manager->persist($this->createVehicleInformation(
-            'toyota',
+            'Ford',
             'F-150',
             2010,
             'white',
@@ -28,11 +30,11 @@ class VehicleInformationFixtures extends Fixture
             new DateTime('2010-01-01'),
             '573K78',
             'GB',
-            $manufacturer1
+            $manufacturer2
         ));
 
         $manager->persist( $this->createVehicleInformation(
-            'Ford',
+            'Toyota',
             'Camry',
             2009,
             'black',
@@ -41,7 +43,33 @@ class VehicleInformationFixtures extends Fixture
             new DateTime('2011-01-01'),
             '64HT',
             'GB',
-            $manufacturer2
+            $manufacturer1
+        ));
+
+        $manager->persist( $this->createVehicleInformation(
+            'Toyota',
+            'Yaris',
+            2009,
+            'black',
+            'Luxury',
+            '1G2XK22K2J5148232',
+            new DateTime('2011-01-01'),
+            '63HT',
+            'GB',
+            $manufacturer1
+        ));
+
+        $manager->persist( $this->createVehicleInformation(
+            'Toyota',
+            'Jazz',
+            2008,
+            'black',
+            'Luxury',
+            '1G2XK22K2J5148232',
+            new DateTime('2012-01-01'),
+            '5467T',
+            'GB',
+            $manufacturer3
         ));
 
         $manager->flush();

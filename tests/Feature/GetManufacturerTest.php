@@ -35,8 +35,8 @@ class GetManufacturerTest extends WebTestCase
     public function vehicleTypeDataAndExpectedManufacturerProvider(): array
     {
         return [
-            ['SUV', 'Toyota'],
-            ['Truck', 'Ford'],
+            ['SUV', 'Ford'],
+            ['Truck', 'Toyota'],
         ];
     }
 }
