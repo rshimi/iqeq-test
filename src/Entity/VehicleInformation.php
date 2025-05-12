@@ -51,6 +51,10 @@ class VehicleInformation
     #[Assert\NotBlank]
     private ?string $country = null;
 
+    #[ORM\ManyToOne(inversedBy: 'manufacturer')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Manufacturer $manufacturer = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -173,6 +177,21 @@ class VehicleInformation
             'year' => $this->year,
             'colour' => $this->colour,
             'type' => $this->type,
+            'vehicleIdentificationNumber' => $this->vehicleIdentificationNumber,
+            'registrationDate' => $this->registration_date,
+            'manufacturuer' => $this->manufacturer->getName(),
         ];
+    }
+
+    public function getManufacturer(): ?Manufacturer
+    {
+        return $this->manufacturer;
+    }
+
+    public function setManufacturer(?Manufacturer $manufacturer): static
+    {
+        $this->manufacturer = $manufacturer;
+
+        return $this;
     }
 }

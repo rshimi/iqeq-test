@@ -31,7 +31,7 @@ class VehicleInformationRepository extends ServiceEntityRepository
 
         return $queryBuilder
             ->getQuery()
-            ->getArrayResult();
+            ->getResult();
     }
 
     public function findById(int $id): array

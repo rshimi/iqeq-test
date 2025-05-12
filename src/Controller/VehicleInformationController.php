@@ -32,10 +32,10 @@ final class VehicleInformationController extends AbstractController
 
     #[Route('/{id}', name: 'app_vehicle_information_show', methods: ['GET'])]
     public function show(
-        VehicleInformationRepository $vehicleInformationRepository,
+        VehicleInformation $vehicleInformation,
         int $id
     ): Response {
-        return new JsonResponse($vehicleInformationRepository->findById($id));
+        return new JsonResponse($vehicleInformation->jsonSerialize());
     }
 
     #[Route('/{id}', name: 'app_vehicle_information_edit', methods: ['PUT'])]
